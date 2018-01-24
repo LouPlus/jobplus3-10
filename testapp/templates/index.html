@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Index</title>
+        <link rel="stylesheet" href="static/main.css">
+    </head>
+    <body>
+        {% for company in companys %}
+            <p>{{ company.name }} </p>
+        {% endfor %}
+    </body>
+    <script src="static/main.js"></script>
+</html>
