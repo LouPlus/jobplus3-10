@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{%block title %}Home{% endblock %}
+
+{%block body %}
+{% for company in companys %}
+<h1>{{ company.name }}-{{company.location}}</h1>
+{% endfor %}
+{% endblock %}
