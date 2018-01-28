@@ -27,12 +27,26 @@
 		<li><a href="#">公司</a></li>
         <li><a href="#">控制台</a></li>
 	</ul>
-    <ul class="nav navbar-nav navbar-right">       
-        <li><a href="{{url_for('front.register')}}">注册</a></li>
-     
-        <li><a href="{{url_for('front.login')}}">登录</a></li>
-	</ul>
-	</div><!-- /.navbar-collapse -->
+
+<ul class="nav navbar-nav navbar-right">
+  {% if not current_user.is_authenticated %}
+	<li><a href="{{ url_for('front.user_register') }}">用户注册</a></li>
+
+    <li><a href="{{ url_for('front.company_register') }}">公司注册</a></li>
+	<li><a href="{{ url_for('front.login') }}">登录</a></li>
+  {% else %}
+	<li class="dropdown">
+	  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ current_user.username }}<span class="caret"></span></a>
+	  <ul class="dropdown-menu">
+		<li><a href="#">简历管理</a></li>
+        <li><role="separator" class="divider"></li>
+        <li><a href="{{ url_for('front.logout') }}">退出登录</a></li>
+    </ul>
+	</li>
+  {% endif %}
+</ul>
+
+    </div><!-- /.navbar-collapse -->
 </div><!-- /.container-fluid -->
 </nav>
       
