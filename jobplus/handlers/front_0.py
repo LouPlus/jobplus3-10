@@ -22,24 +22,35 @@ def login():
     return render_template('login.html',form=form)
 
 @front.route('/user_register',methods=['GET','POST'])
-def user_register():
-#用户注册
+def register():
+#包括用户注册和公司注册
     user_form=UserRegisterForm()
+#    company_form=CompanyRegisterForm()
     if user_form.validate_on_submit():
         user_form.create_user()
         flash('注册成功，请登录！','success')
         return redirect(url_for('.login'))
+"""
+    if company_form.validate_on_submit():
+        company_form.create_user()
+        flash('注册成功，请登录！','success')
+        return redirect(url_for('.login'))
+"""    
     return render_template(
             'user_register.html',user_form=user_form)
 
 @front.route('/company_register',methods=['GET','POST'])
-def company_register():
-#公司注册
+def register():
+#包括用户注册和公司注册
+#    user_form=UserRegisterForm()
     company_form=CompanyRegisterForm()
-    user=User()
-    role=user.ROLE_COMPANY
+ """   if user_form.validate_on_submit():
+        user_form.create_user()
+        flash('注册成功，请登录！','success')
+        return redirect(url_for('.login'))
+"""
     if company_form.validate_on_submit():
-        company_form.create_company(role)
+        company_form.create_user()
         flash('注册成功，请登录！','success')
         return redirect(url_for('.login'))
     return render_template(
