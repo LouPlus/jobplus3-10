@@ -2,8 +2,48 @@
 
 {%block title %}Home{% endblock %}
 
-{%block body %}
-{% for company in companys %}
-<h1>{{ company.name }}-{{company.location}}</h1>
-{% endfor %}
+{% block body %}
+<div class='layui-container'>
+    <div class='page-header'><h1>最新职位</h1></div>
+        <div class="row">
+            {% for job in jobs %}
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail job-item text-center">
+                    <h4><a href="">{{ job.name }}</a><small> [{{ job.updated_at.strftime('%H:%m') }}发布]</small><span class='salary'>{{ job.salary }}</span></h4>
+                    <span class='requ'>{{ job.experience }} / {{ job.degree }}</span>
+                    <hr>
+                    <div class="caption">
+                        <img src="{{ job.company.logo_url }}" class='small-logo'>
+                        <div class='sim-profile'>
+                            <a href="">{{ job.company.name }}</a><br>
+                            <span class='requ'>{{ job.address }}</span>
+                        </div>
+                     </div>
+                 </div>
+             </div>
+         {% endfor %}
+    </div>
+    <div class="text-center"><a href="{{ url_for('job.index') }}" class="layui-btn layui-btn-primary more-list">查看更多</a></div>
+    <div class='page-header'><h1>最新公司</h1></div>
+    <!--最新公司-->
+    <div class="row">
+        {% for company in companys %}
+        <div class="col-sm-6 col-md-4">
+                <div class="thumbnail job-item">
+                    <img src="{{ company.logo_url }}" class='company-logo'>
+                    <h4><a href="">{{ company.name }}</a></h4>
+                        <p class='requ'>{{ company.location }}</p>
+                        <p>{{ company.intro }}</p> 
+                        <hr>
+                        <div class="caption text-center">
+                            <div class='sim-profile'>
+                                <a href=""><span style="color: #009688">32</span><br>招聘职位</a><br>
+                            </div>
+                       </div>
+                     </div>
+                 </div>
+        {% endfor %}
+    </div>
+    <div class="text-center"><a href="{{ url_for('company.index') }}" class="layui-btn layui-btn-primary more-list">查看更多</a></div>
+ </div>
 {% endblock %}
