@@ -9,8 +9,8 @@ front=Blueprint('front',__name__)
 def index():
 #公司和职位列表（各8个，按时间排序）
 #    companys=Company.query.all()
-    jobs=Job.query.order_by(Job.updated_at.desc()).limit(9)
-    companys=Company.query.order_by(Company.updated_at.desc()).limit(9)
+    jobs=Job.query.order_by(Job.updated_at.desc()).limit(8)
+    companys=Company.query.order_by(Company.updated_at.desc()).limit(8)
     return render_template('index.html',jobs=jobs,companys=companys)
 
 @front.route('/login',methods=['GET','POST'])
